@@ -1,13 +1,13 @@
 resource "azurerm_postgresql_server" "postgresql_server" {
-  name                = var.postgresql_server_name
-  location            = var.location
-  resource_group_name = var.resource_group_name
+  name                = "${var.postgresql_server_name}"
+  location            = "${var.location}"
+  resource_group_name = "${var.resource_group_name}"
 
   sku {
     name     = "B_Gen5_2"
-    capacity = var.postgresql_server_sku_capacity
-    tier     = var.postgresql_server_sku_tier
-    family   = var.postgresql_server_sku_family
+    capacity = "${var.postgresql_server_sku_capacity}"
+    tier     = "${var.postgresql_server_sku_tier}"
+    family   = "${var.postgresql_server_sku_family}"
   }
 
   storage_profile {
@@ -17,10 +17,10 @@ resource "azurerm_postgresql_server" "postgresql_server" {
     auto_grow             = "Enabled"
   }
 
-  administrator_login          = var.postgresql_server_administrator_login
-  administrator_login_password = var.postgresql_server_administrator_login_password
-  version                      = var.postgresql_server_version
-  ssl_enforcement              = var.postgresql_server_ssl_enforcement
+  administrator_login          = "${var.postgresql_server_administrator_login}"
+  administrator_login_password = "${var.postgresql_server_administrator_login_password}"
+  version                      = "${var.postgresql_server_version}"
+  ssl_enforcement              = "${var.postgresql_server_ssl_enforcement}"
 
   tags {
       environment = "dev"
@@ -28,9 +28,9 @@ resource "azurerm_postgresql_server" "postgresql_server" {
 }
 
 resource "azurerm_postgresql_database" "postgresql_database" {
-  name                = var.postgresql_database_name
-  resource_group_name = var.resource_group_name
-  server_name         = azurerm_postgresql_server.postgresql_server.name
-  charset             = var.postgresql_database_charset
-  collation           = var.postgresql_database_collation
+  name                = "${var.postgresql_database_name}"
+  resource_group_name = "${var.resource_group_name}"
+  server_name         = "${azurerm_postgresql_server.postgresql_server.name}"
+  charset             = "${var.postgresql_database_charset}"
+  collation           = "${var.postgresql_database_collation}"
 }
