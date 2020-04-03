@@ -18,15 +18,15 @@ resource "azurerm_virtual_network" "rppg_vnet" {
 resource "azurerm_subnet" "rppg_subnet_1" {
   name 					= "Rppg-Subnet-1"
   address_prefix 		= var.subnet1_cidr
-  virtual_network_name 	= "${azurerm_virtual_network.rppg_vnet.name}"
-  resource_group_name 	= "${azurerm_resource_group.rppg_rg.name}"
+  virtual_network_name 	= azurerm_virtual_network.rppg_vnet.name
+  resource_group_name 	= azurerm_resource_group.rppg_rg.name
 }
 
 resource "azurerm_subnet" "rppg_subnet_2" {
   name 					= "Rppg-Subnet-2"
   address_prefix 		= var.subnet2_cidr
-  virtual_network_name 	= "${azurerm_virtual_network.rppg_vnet.name}"
-  resource_group_name 	= "${azurerm_resource_group.rppg_rg.name}"
+  virtual_network_name 	= azurerm_virtual_network.rppg_vnet.name
+  resource_group_name 	= azurerm_resource_group.rppg_rg.name
 }
 
 
