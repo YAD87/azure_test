@@ -43,7 +43,7 @@ resource "azurerm_linux_virtual_machine" "web" {
   }
 }
 
-resource "azurerm_virtual_machine" "backend" {
+resource "azurerm_linux_virtual_machine" "backend" {
   name                  = "Rppg-BackendVM"
   location              = var.location
   resource_group_name   = azurerm_resource_group.rppg_rg.name
