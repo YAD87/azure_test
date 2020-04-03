@@ -2,7 +2,7 @@ resource "azurerm_public_ip" "web_pip" {
   name 				= "rppg_web_ip"
   location 			= var.location
   resource_group_name 		= "${azurerm_resource_group.rppg_rg.name}"
-  public_ip_address_allocation 	= "static"
+  allocation_method 	= "static"
 
   tags = {
 	environment = "dev"
@@ -13,7 +13,7 @@ resource "azurerm_network_interface" "public_nic_web" {
   name 		      = "rppg-web"
   location 	      = var.location
   resource_group_name = "${azurerm_resource_group.rppg_rg.name}"
-  network_security_group_id = "${azurerm_network_security_group.nsg_web.id}"
+  
 
   ip_configuration {
     name 			= "rppg_web_private"
@@ -30,7 +30,7 @@ resource "azurerm_network_interface" "private_nic_backend" {
   name 			= "rppg-backend"
   location 		= var.location
   resource_group_name 	= "${azurerm_resource_group.rppg_rg.name}"
-  network_security_group_id = "${azurerm_network_security_group.nsg_back.id}"
+  
 
   ip_configuration {
     name 			= "Rppg-BackendPrivate"
@@ -41,6 +41,16 @@ resource "azurerm_network_interface" "private_nic_backend" {
   tags = {
 	environment = "dev"
   }
+}
+
+resource "azurerm_network_interface_security_group_association" "web" {
+    network_interface_id      = azurerm_network_interface.public_nic_web.id
+    network_security_group_id = azurerm_network_security_group.nsg_web.id
+}
+
+resource "azurerm_network_interface_security_group_association" "backend" {
+    network_interface_id      = azurerm_network_interface.private_nic_backend.id
+    network_security_group_id = azurerm_network_security_group.nsg_back.id
 }
 
 # resource "azurerm_network_interface" "private_nic_db" {
