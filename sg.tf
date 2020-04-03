@@ -39,7 +39,7 @@ resource "azurerm_network_security_group" "nsg_web" {
     destination_address_prefix 	= "*"
   }
 
-  tags {
+  tags = {
 	environment = "dev"
   }
 }
@@ -118,7 +118,7 @@ resource "azurerm_network_security_group" "nsg_back" {
 
 
 
-  tags {
+  tags = {
 	environment = "dev"
   }
 }
