@@ -38,7 +38,7 @@ resource "azurerm_virtual_machine" "web" {
     }
 
 
-  tags {
+  tags = {
     environment = "dev"
   }
 }
@@ -83,7 +83,7 @@ resource "azurerm_virtual_machine" "backend" {
     }
 
 
-  tags {
+  tags = {
     environment = "dev"
   }
 }
