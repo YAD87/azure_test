@@ -22,7 +22,7 @@ resource "azurerm_postgresql_server" "postgresql_server" {
   version                      = var.postgresql_server_version
   ssl_enforcement              = var.postgresql_server_ssl_enforcement
 
-  tags {
+  tags = {
       environment = "dev"
   }
 }
