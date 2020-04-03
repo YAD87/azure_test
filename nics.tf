@@ -1,6 +1,6 @@
 resource "azurerm_public_ip" "web_pip" {
   name 				= "rppg_web_ip"
-  location 			= "${var.location}"
+  location 			= var.location
   resource_group_name 		= "${azurerm_resource_group.rppg_rg.name}"
   public_ip_address_allocation 	= "static"
 
@@ -11,7 +11,7 @@ resource "azurerm_public_ip" "web_pip" {
 
 resource "azurerm_network_interface" "public_nic_web" {
   name 		      = "rppg-web"
-  location 	      = "${var.location}"
+  location 	      = var.location
   resource_group_name = "${azurerm_resource_group.rppg_rg.name}"
   network_security_group_id = "${azurerm_network_security_group.nsg_web.id}"
 
@@ -28,7 +28,7 @@ resource "azurerm_network_interface" "public_nic_web" {
 
 resource "azurerm_network_interface" "private_nic_backend" {
   name 			= "rppg-backend"
-  location 		= "${var.location}"
+  location 		= var.location
   resource_group_name 	= "${azurerm_resource_group.rppg_rg.name}"
   network_security_group_id = "${azurerm_network_security_group.nsg_back.id}"
 
