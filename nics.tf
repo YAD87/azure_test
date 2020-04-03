@@ -4,7 +4,7 @@ resource "azurerm_public_ip" "web_pip" {
   resource_group_name 		= "${azurerm_resource_group.rppg_rg.name}"
   public_ip_address_allocation 	= "static"
 
-  tags {
+  tags = {
 	environment = "dev"
   }
 }
@@ -21,7 +21,7 @@ resource "azurerm_network_interface" "public_nic_web" {
     private_ip_address_allocation = "dynamic"
     public_ip_address_id	= "${azurerm_public_ip.web_pip.id}"
   }
-  tags {
+  tags = {
 	environment = "dev"
   }
 }
@@ -38,7 +38,7 @@ resource "azurerm_network_interface" "private_nic_backend" {
     private_ip_address_allocation = "static"
     private_ip_address = "192.168.2.5"
   }
-  tags {
+  tags = {
 	environment = "dev"
   }
 }
