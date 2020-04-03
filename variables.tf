@@ -70,9 +70,7 @@ variable "postgresql_database_collation" {
   description = "CIDR block for Frontend Subnet within a Virtual Network."
 }
 
-variable "" {
-  description = "CIDR block for Frontend Subnet within a Virtual Network."
-}
+
 
 
 
