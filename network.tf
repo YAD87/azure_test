@@ -9,7 +9,7 @@ resource "azurerm_virtual_network" "rppg_vnet" {
   location 				= var.location
   resource_group_name 	= "${azurerm_resource_group.rppg_rg.name}"
   
-  tags {
+  tags = {
 	environment = "dev"
   }
 }
