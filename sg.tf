@@ -1,6 +1,6 @@
 resource "azurerm_network_security_group" "nsg_web" {
   name 					= "Rppg-Web-NSG"
-  location 				= "${var.location}"
+  location 				= var.location
   resource_group_name 	= "${azurerm_resource_group.rppg_rg.name}"
 
   security_rule {
@@ -35,7 +35,7 @@ resource "azurerm_network_security_group" "nsg_web" {
 	protocol 					= "Tcp"
 	source_port_range          	= "*"
     destination_port_range     	= "8888"
-    source_address_prefix      	= "${var.subnet2_cidr}"
+    source_address_prefix      	= var.subnet2_cidr
     destination_address_prefix 	= "*"
   }
 
@@ -82,7 +82,7 @@ resource "azurerm_network_security_group" "nsg_web" {
 
 resource "azurerm_network_security_group" "nsg_back" {
   name 					= "Rppg-Backend-NSG"
-  location 				= "${var.location}"
+  location 				= var.location
   resource_group_name 	= "${azurerm_resource_group.rppg_rg.name}"
 
  
@@ -97,7 +97,7 @@ resource "azurerm_network_security_group" "nsg_back" {
 	protocol 					= "Tcp"
 	source_port_range          	= "*"
     destination_port_range     	= "22"
-    source_address_prefix      	= "${var.subnet1_cidr}"
+    source_address_prefix      	= var.subnet1_cidr
     destination_address_prefix 	= "*"
   }
 
@@ -109,7 +109,7 @@ resource "azurerm_network_security_group" "nsg_back" {
 	protocol 					= "Tcp"
 	source_port_range          	= "*"
     destination_port_range     	= "8888"
-    source_address_prefix      	= "${var.subnet1_cidr}"
+    source_address_prefix      	= var.subnet1_cidr
     destination_address_prefix 	= "*"
   }
 
