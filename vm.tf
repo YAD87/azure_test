@@ -3,7 +3,7 @@ resource "azurerm_linux_virtual_machine" "web" {
   location              = var.location
   resource_group_name   = azurerm_resource_group.rppg_rg.name
   network_interface_ids = [azurerm_network_interface.public_nic_web.id]
-  size               = "Standard_A1"
+  size               = "Basic_A1"
 
 #This will delete the OS disk and data disk automatically when deleting the VM
   
@@ -43,7 +43,7 @@ resource "azurerm_linux_virtual_machine" "backend" {
   location              = var.location
   resource_group_name   = azurerm_resource_group.rppg_rg.name
   network_interface_ids = [azurerm_network_interface.private_nic_backend.id]
-  size               = "Standard_A1"
+  size               = "Basic_A1"
 
 #This will delete the OS disk and data disk automatically when deleting the VM
   
