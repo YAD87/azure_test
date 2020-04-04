@@ -17,9 +17,9 @@ resource "azurerm_network_interface" "public_nic_web" {
 
   ip_configuration {
     name 			= "rppg_web_private"
-    subnet_id 			= "${azurerm_subnet.rppg_subnet_1.id}"
+    subnet_id 			= azurerm_subnet.rppg_subnet_1.id
     private_ip_address_allocation = "dynamic"
-    public_ip_address_id	= "${azurerm_public_ip.web_pip.id}"
+    public_ip_address_id	= azurerm_public_ip.web_pip.id
   }
   tags = {
 	environment = "dev"
@@ -34,7 +34,7 @@ resource "azurerm_network_interface" "private_nic_backend" {
 
   ip_configuration {
     name 			= "Rppg-BackendPrivate"
-    subnet_id 			= "${azurerm_subnet.rppg_subnet_2.id}"
+    subnet_id 			= azurerm_subnet.rppg_subnet_2.id
     private_ip_address_allocation = "static"
     private_ip_address = "192.168.2.5"
   }
