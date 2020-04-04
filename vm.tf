@@ -16,7 +16,7 @@ resource "azurerm_linux_virtual_machine" "web" {
   }
 
    os_disk {
-        name              = "myOsDisk"
+        name              = "myOsDisk-web"
         caching           = "ReadWrite"
         storage_account_type = "Standard_LRS"
     }
