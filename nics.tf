@@ -1,7 +1,7 @@
 resource "azurerm_public_ip" "web_pip" {
   name 				= "rppg_web_ip"
   location 			= var.location
-  resource_group_name 		= "${azurerm_resource_group.rppg_rg.name}"
+  resource_group_name 		= azurerm_resource_group.rppg_rg.name
   allocation_method 	= "Static"
 
   tags = {
@@ -12,7 +12,7 @@ resource "azurerm_public_ip" "web_pip" {
 resource "azurerm_network_interface" "public_nic_web" {
   name 		      = "rppg-web"
   location 	      = var.location
-  resource_group_name = "${azurerm_resource_group.rppg_rg.name}"
+  resource_group_name = azurerm_resource_group.rppg_rg.name
   
 
   ip_configuration {
@@ -29,7 +29,7 @@ resource "azurerm_network_interface" "public_nic_web" {
 resource "azurerm_network_interface" "private_nic_backend" {
   name 			= "rppg-backend"
   location 		= var.location
-  resource_group_name 	= "${azurerm_resource_group.rppg_rg.name}"
+  resource_group_name 	= azurerm_resource_group.rppg_rg.name
   
 
   ip_configuration {
