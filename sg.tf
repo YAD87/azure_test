@@ -1,7 +1,7 @@
 resource "azurerm_network_security_group" "nsg_web" {
   name 					= "Rppg-Web-NSG"
   location 				= var.location
-  resource_group_name 	= "${azurerm_resource_group.rppg_rg.name}"
+  resource_group_name 	= azurerm_resource_group.rppg_rg.name
 
   security_rule {
 	name 						= "AllowSSH"
@@ -83,7 +83,7 @@ resource "azurerm_network_security_group" "nsg_web" {
 resource "azurerm_network_security_group" "nsg_back" {
   name 					= "Rppg-Backend-NSG"
   location 				= var.location
-  resource_group_name 	= "${azurerm_resource_group.rppg_rg.name}"
+  resource_group_name 	= azurerm_resource_group.rppg_rg.name
 
  
 
