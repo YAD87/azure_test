@@ -1,4 +1,4 @@
-location = "centralus"
+location = "westus"
 resource_group_name ="rppg-dev"
 subnet1_cidr = "192.168.1.0/24"
 vnet_cidr 			= "192.168.0.0/16"
