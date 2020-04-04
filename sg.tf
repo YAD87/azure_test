@@ -17,7 +17,7 @@ resource "azurerm_network_security_group" "nsg_web" {
 
   security_rule {
 	name 						= "AllowHTTP"
-	priority					= 200
+	priority					= 101
 	direction					= "Inbound"
 	access 						= "Allow"
 	protocol 					= "Tcp"
@@ -29,7 +29,7 @@ resource "azurerm_network_security_group" "nsg_web" {
 
   security_rule {
 	name 						= "BackendProxy"
-	priority					= 200
+	priority					= 102
 	direction					= "Inbound"
 	access 						= "Allow"
 	protocol 					= "Tcp"
@@ -103,7 +103,7 @@ resource "azurerm_network_security_group" "nsg_back" {
 
   security_rule {
 	name 						= "BackendProxy"
-	priority					= 200
+	priority					= 101
 	direction					= "Inbound"
 	access 						= "Allow"
 	protocol 					= "Tcp"
