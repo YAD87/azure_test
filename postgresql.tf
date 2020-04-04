@@ -3,7 +3,7 @@ resource "azurerm_postgresql_server" "postgresql_server" {
   location            = var.location
   resource_group_name = azurerm_resource_group.rppg_rg.name
 
-  sku_name     = "B_Gen5_1"
+  sku_name     = "B_Gen5_2"
    
 
   storage_profile {
