@@ -11,7 +11,7 @@ resource "azurerm_network_security_group" "nsg_web" {
 	protocol 					= "Tcp"
 	source_port_range          	= "*"
     destination_port_range     	= "22"
-    source_address_prefix      	= "*"
+    source_address_prefix      	= "var.subnet1_cidr"
     destination_address_prefix 	= "*"
   }
 
