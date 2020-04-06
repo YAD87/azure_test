@@ -46,7 +46,7 @@ resource "azurerm_network_interface" "public_nic_web" {
   ip_configuration {
     name 			= "rppg_web_private"
     subnet_id 			= azurerm_subnet.rppg_subnet_1.id
-    private_ip_address = "192.168.2.4"
+    private_ip_address = "192.168.1.4"
     private_ip_address_allocation = "static"
     public_ip_address_id	= azurerm_public_ip.web_pip.id
   }
