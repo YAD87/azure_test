@@ -30,7 +30,7 @@ resource "azurerm_network_interface" "public_nic_managment" {
     name 			= "rppg_managment_private"
     subnet_id 			= azurerm_subnet.rppg_subnet_1.id
     private_ip_address_allocation = "dynamic"
-    public_ip_address_id	= azurerm_public_ip.mangment_pip.id
+    public_ip_address_id	= azurerm_public_ip.managment_pip.id
   }
   tags = {
 	environment = "dev"
