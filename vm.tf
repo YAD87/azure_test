@@ -16,7 +16,7 @@ resource "azurerm_linux_virtual_machine" "managment" {
   }
 
    os_disk {
-        name              = "web-os"
+        name              = "managment-os"
         caching           = "ReadWrite"
         storage_account_type = "Standard_LRS"
     }
@@ -29,7 +29,7 @@ resource "azurerm_linux_virtual_machine" "managment" {
 
   admin_ssh_key {
         username       = "azureuser"
-        public_key     =  file("/home/denys/.ssh/rppg.pub")
+        public_key     =  file("/home/nikhil/.ssh/rppg.pub")
     }
 
 
@@ -71,7 +71,7 @@ resource "azurerm_linux_virtual_machine" "web" {
 
   admin_ssh_key {
         username       = "azureuser"
-        public_key     =  file("/home/denys/.ssh/rppg.pub")
+        public_key     =  file("/home/nikhil/.ssh/rppg.pub")
     }
 
 
@@ -110,7 +110,7 @@ resource "azurerm_linux_virtual_machine" "backend" {
 
   admin_ssh_key {
         username       = "azureuser"
-        public_key     =  file("/home/denys/.ssh/rppg.pub")
+        public_key     =  file("/home/nikhil/.ssh/rppg.pub")
     }
 
 
@@ -150,7 +150,7 @@ resource "azurerm_linux_virtual_machine" "db" {
 
   admin_ssh_key {
         username       = "azureuser"
-        public_key     =  file("/home/denys/.ssh/rppg.pub")
+        public_key     =  file("/home/nikhil/.ssh/rppg.pub")
     }
 
 
