@@ -9,6 +9,34 @@ resource "azurerm_public_ip" "web_pip" {
   }
 }
 
+resource "azurerm_public_ip" "mangment_pip" {
+  name 				= "rppg_managment_ip"
+  location 			= var.location
+  resource_group_name 		= azurerm_resource_group.rppg_rg.name
+  allocation_method 	= "Static"
+
+  tags = {
+	environment = "dev"
+  }
+}
+
+resource "azurerm_network_interface" "public_nic_managment" {
+  name 		      = "rppg-web"
+  location 	      = var.location
+  resource_group_name = azurerm_resource_group.rppg_rg.name
+  
+
+  ip_configuration {
+    name 			= "rppg_managment_private"
+    subnet_id 			= azurerm_subnet.rppg_subnet_1.id
+    private_ip_address_allocation = "dynamic"
+    public_ip_address_id	= azurerm_public_ip.mangment_pip.id
+  }
+  tags = {
+	environment = "dev"
+  }
+}
+
 resource "azurerm_network_interface" "public_nic_web" {
   name 		      = "rppg-web"
   location 	      = var.location
@@ -18,7 +46,8 @@ resource "azurerm_network_interface" "public_nic_web" {
   ip_configuration {
     name 			= "rppg_web_private"
     subnet_id 			= azurerm_subnet.rppg_subnet_1.id
-    private_ip_address_allocation = "dynamic"
+    private_ip_address = "192.168.2.4"
+    private_ip_address_allocation = "static"
     public_ip_address_id	= azurerm_public_ip.web_pip.id
   }
   tags = {
@@ -46,6 +75,11 @@ resource "azurerm_network_interface" "private_nic_backend" {
 resource "azurerm_network_interface_security_group_association" "web" {
     network_interface_id      = azurerm_network_interface.public_nic_web.id
     network_security_group_id = azurerm_network_security_group.nsg_web.id
+}
+
+resource "azurerm_network_interface_security_group_association" "managment" {
+    network_interface_id      = azurerm_network_interface.public_nic_managment.id
+    network_security_group_id = azurerm_network_security_group.nsg_managment.id
 }
 
 resource "azurerm_network_interface_security_group_association" "backend" {
