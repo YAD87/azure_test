@@ -21,7 +21,7 @@ resource "azurerm_public_ip" "managment_pip" {
 }
 
 resource "azurerm_network_interface" "public_nic_managment" {
-  name 		      = "rppg-web"
+  name 		      = "rppg-managment"
   location 	      = var.location
   resource_group_name = azurerm_resource_group.rppg_rg.name
   
