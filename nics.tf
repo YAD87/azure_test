@@ -9,7 +9,7 @@ resource "azurerm_public_ip" "web_pip" {
   }
 }
 
-resource "azurerm_public_ip" "mangment_pip" {
+resource "azurerm_public_ip" "manаgment_pip" {
   name 				= "rppg_managment_ip"
   location 			= var.location
   resource_group_name 		= azurerm_resource_group.rppg_rg.name
