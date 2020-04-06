@@ -53,7 +53,7 @@ resource "azurerm_network_security_group" "nsg_web" {
 
    security_rule {
  	name 						= "AllowSQL"
- 	priority					= 200
+ 	priority					= 101
  	direction					= "Inbound"
  	access 						= "Allow"
  	protocol 					= "Tcp"
