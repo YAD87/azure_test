@@ -85,10 +85,6 @@ resource "azurerm_network_security_group" "nsg_back" {
   location 				= var.location
   resource_group_name 	= azurerm_resource_group.rppg_rg.name
 
- 
-
-  
-
   security_rule {
 	name 						= "AllowSSH"
 	priority 					= 100
@@ -113,15 +109,35 @@ resource "azurerm_network_security_group" "nsg_back" {
     destination_address_prefix 	= "*"
   }
 
- 
+  tags = {
+	environment = "dev"
+  }
+}
 
 
+resource "azurerm_network_security_group" "nsg_managment" {
+  name 					= "Rppg-managment-NSG"
+  location 				= var.location
+  resource_group_name 	= azurerm_resource_group.rppg_rg.name
+
+  security_rule {
+	name 						= "AllowSSH"
+	priority 					= 100
+	direction 					= "Inbound"
+	access 						= "Allow"
+	protocol 					= "Tcp"
+	source_port_range          	= "*"
+    destination_port_range     	= "22"
+    source_address_prefix      	= "Internet"
+    destination_address_prefix 	= "*"
+  }
 
 
   tags = {
 	environment = "dev"
   }
 }
+
 
 
 
