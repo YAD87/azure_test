@@ -53,21 +53,26 @@ resource "azurerm_network_interface_security_group_association" "backend" {
     network_security_group_id = azurerm_network_security_group.nsg_back.id
 }
 
-# resource "azurerm_network_interface" "private_nic_db" {
-#   name 			= "rppg-db"
-#   location 		= "${var.location}"
-#   resource_group_name 	= "${azurerm_resource_group.rppg_rg.name}"
-#   network_security_group_id = "${azurerm_network_security_group.nsg_db.id}"
+resource "azurerm_network_interface_security_group_association" "db" {
+    network_interface_id      = azurerm_network_interface.private_nic_db.id
+    network_security_group_id = azurerm_network_security_group.nsg_db.id
+}
 
-#   ip_configuration {
-#     name 			= "Rppg-DBPrivate"
-#     subnet_id 			= "${azurerm_subnet.rppg_subnet_2.id}"
-#     private_ip_address_allocation = "static"
-#     private_ip_address = "192.168.2.6"
-#   }
-#   tags {
-# 	environment = "dev"
-#   }
-# }
+ resource "azurerm_network_interface" "private_nic_db" {
+   name 			= "rppg-db"
+   location 		= var.location
+   resource_group_name 	= azurerm_resource_group.rppg_rg.name
+   
+
+   ip_configuration {
+     name 			= "Rppg-DBPrivate"
+     subnet_id 			= azurerm_subnet.rppg_subnet_2.id
+     private_ip_address_allocation = "static"
+     private_ip_address = "192.168.2.6"
+   }
+   tags = {
+ 	environment = "dev"
+   }
+ }
 
 
