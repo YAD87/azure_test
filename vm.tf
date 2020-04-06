@@ -16,7 +16,7 @@ resource "azurerm_linux_virtual_machine" "web" {
   }
 
    os_disk {
-        name              = "myOsDisk-web"
+        name              = "web-os"
         caching           = "ReadWrite"
         storage_account_type = "Standard_LRS"
     }
@@ -56,7 +56,7 @@ resource "azurerm_linux_virtual_machine" "backend" {
   }
 
    os_disk {
-        name              = "myOsDisk"
+        name              = "backend-os"
         caching           = "ReadWrite"
         storage_account_type = "Standard_LRS"
     }
@@ -96,7 +96,7 @@ resource "azurerm_linux_virtual_machine" "db" {
   }
 
    os_disk {
-        name              = "myOsDisk"
+        name              = "db-os"
         caching           = "ReadWrite"
         storage_account_type = "Standard_LRS"
     }
@@ -118,7 +118,7 @@ resource "azurerm_linux_virtual_machine" "db" {
 }
 
 resource "azurerm_managed_disk" "db_disk" {
-  name                 = "db-disk1"
+  name                 = "db-data"
   location             = var.location
   resource_group_name  = azurerm_resource_group.rppg_rg.name
   storage_account_type = "Standard_LRS"
