@@ -128,7 +128,7 @@ resource "azurerm_managed_disk" "db_disk" {
 
 resource "azurerm_virtual_machine_data_disk_attachment" "db_attach" {
   managed_disk_id    = azurerm_managed_disk.db_disk.id
-  virtual_machine_id = azurerm_virtual_machine.db.id
+  virtual_machine_id = azurerm_linux_virtual_machine.db.id
   lun                = "10"
   caching            = "ReadWrite"
 }
