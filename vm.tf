@@ -117,3 +117,19 @@ resource "azurerm_linux_virtual_machine" "db" {
   }
 }
 
+resource "azurerm_managed_disk" "db_disk" {
+  name                 = "db-disk1"
+  location             = var.location
+  resource_group_name  = azurerm_resource_group.rppg_rg.name
+  storage_account_type = "Standard_LRS"
+  create_option        = "Empty"
+  disk_size_gb         = 10
+}
+
+resource "azurerm_virtual_machine_data_disk_attachment" "db_attach" {
+  managed_disk_id    = azurerm_managed_disk.db_disk.id
+  virtual_machine_id = azurerm_virtual_machine.db.id
+  lun                = "10"
+  caching            = "ReadWrite"
+}
+
