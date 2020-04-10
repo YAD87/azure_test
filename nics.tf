@@ -87,6 +87,11 @@ resource "azurerm_network_interface_security_group_association" "backend" {
     network_security_group_id = azurerm_network_security_group.nsg_back.id
 }
 
+resource "azurerm_network_interface_security_group_association" "backend_pv" {
+    network_interface_id      = azurerm_network_interface.private_nic_backend_pv.id
+    network_security_group_id = azurerm_network_security_group.nsg_back.id
+}
+
 resource "azurerm_network_interface_security_group_association" "db" {
     network_interface_id      = azurerm_network_interface.private_nic_db.id
     network_security_group_id = azurerm_network_security_group.nsg_db.id
