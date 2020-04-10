@@ -109,4 +109,21 @@ resource "azurerm_network_interface_security_group_association" "db" {
    }
  }
 
+resource "azurerm_network_interface" "private_nic_backend_pv" {
+   name 			= "rppg-backend_pv"
+   location 		= var.location
+   resource_group_name 	= azurerm_resource_group.rppg_rg.name
+   
+
+   ip_configuration {
+     name 			= "Rppg-BackendPVPrivate"
+     subnet_id 			= azurerm_subnet.rppg_subnet_2.id
+     private_ip_address_allocation = "static"
+     private_ip_address = "192.168.2.7"
+   }
+   tags = {
+ 	environment = "dev"
+   }
+ }
+
 
