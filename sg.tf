@@ -39,6 +39,20 @@ resource "azurerm_network_security_group" "nsg_web" {
     destination_address_prefix 	= "*"
   }
 
+  security_rule {
+	name 						= "JenkinsProxy"
+	priority					= 103
+	direction					= "Inbound"
+	access 						= "Allow"
+	protocol 					= "Tcp"
+	source_port_range          	= "*"
+    destination_port_range     	= "8889"
+    source_address_prefix      	= var.subnet1_cidr
+    destination_address_prefix 	= "*"
+  }
+	
+	
+	
   tags = {
 	environment = "dev"
   }
